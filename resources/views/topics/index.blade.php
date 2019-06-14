@@ -36,9 +36,9 @@
                         <td><a href="/topics/{{$topic->id}}">{{$topic->topic_title}}</a></td>
                         <td>
                             @if(!$topic->closed)
-                            <p>Aberto</p>
+                            <p class="text-success">Aberto</p>
                             @else
-                            <p class="btn btn-dark">Fechado>
+                            <p class="text-dark">Fechado</p>
                             @endif
                         </td>
                     </tr>
