@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use Illuminate\Http\Request;
+use Auth;
 
 class AnswerController extends Controller
 {
@@ -35,6 +36,12 @@ class AnswerController extends Controller
      */
     public function store(Request $request, $id)
     {
+        $answer= new Answer();
+        $answer->answertext = request()->post("answertext");
+        $answer->topic_id = $id;
+        $answer->answerusername = Auth::user()->name;
+        $answer->save();
+        return redirect("/topics/".$id);
     }
 
     /**

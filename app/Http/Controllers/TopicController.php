@@ -39,8 +39,9 @@ class TopicController extends Controller
         $topic = new Topic();
         $topic->topic_title = request()->post('topictitle');
         $topic->topic_text = request()->post('topictext');
-        $topic->user_id= Auth::user()->id;
+        $topic->user_id = Auth::user()->id;
         $topic->save();
+        return redirect("/topics/".$topic->id);
     }
 
     /**
@@ -85,6 +86,12 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        if(Auth::user()->id==$topic->user_id){
+            $topic->closed=!$topic->closed;
+            $topic->save();
+            return redirect("/topics/".$topic->id);
+        }else{
+            abort(403, 'Unauthorized action.');
+        }
     }
 }

@@ -36,18 +36,18 @@
                         <td><a href="/topics/{{$topic->id}}">{{$topic->topic_title}}</a></td>
                         <td>
                             @if(!$topic->closed)
-                            <p class="text-success">Aberto</p>
+                            <p>Aberto</p>
                             @else
-                            <p class="text-dark">Fechado</p>
+                            <p>Fechado</p>
                             @endif
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            @endif
+            <hr>
+    @endif
         </div>
     </div>
-    <hr>
 </div>
 @endsection
