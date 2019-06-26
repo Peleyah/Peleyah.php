@@ -11,11 +11,16 @@
         <div class="col-md-12 text-center">
             <h2>{{$topic->topic_title}}</h2>
             <h3>{{$topic->topic_text}}</h3>
-            @if($topic->user_id==Auth::user()->id && $topic->closed == 0)
+            @if($topic->user_id==Auth::user()->id)
             <form action="/topics/{{$topic->id}}" method="post">
                 @csrf
                 @method('delete')
+                @if($topic->closed == 0)
                 <button class="btn btn-danger" type="submit"> Fechar tópico</button>
+                @endif
+                @if($topic->closed == 1)
+                <button class="btn btn-sucess" type="submit"> Abrir tópico</button>
+                @endif
             </form>
             @endif
         </div>
